@@ -28,13 +28,18 @@ Matches between all images (in alphabetic order). To avoid repetition, the first
 
 Runs feature detection with the ORB descriptor and uses KNN for matching.
 
-Only matches sequentially, meaning it only matches a image with the next one (in alphabetic order). 
+Only matches sequentially, meaning it only matches an image with the next one (in alphabetic order). 
 
 #### Orb_All
 
 Runs feature detection with the ORB descriptor and uses KNN for matching.
 
-Matches between all images (in alphabetic order). To avoid repetition, the first index must be greater then the second one.
+Matches between all images (in alphabetic order). To avoid repetition, the first index must be greater than the second one.
+
+
+#### Manual
+
+Doesn't run any feature detection or matching. Returns whatever the first .mat file found in the "inputImages" file has. 
 
 ### Output Data
 
@@ -52,5 +57,25 @@ For example, to access the matching points between image 1 and 4:
 
 ```
 matched_points = Dict['0-3']['matching_coord'][0][0]
+
+```
+
+## Deploy
+
+To create the necessary generic_box_pb2.py and generic_box_pb2_grpc.py files use the following command:
+
+```
+  python -m grpc_tools.protoc --proto_path=./protos --python_out=. --grpc_python_out=. generic_box.proto
+```
+
+To build the docker image use:
+
+```
+docker build -t matching_grpc --build-arg SERVICE_NAME=generic_box -f docker/Dockerfile .
+```
+
+To execute the docker container, make sure you have a file called "inputImages" so the volume can attactched to a folder and then exectue the following command: 
+```
+docker run -p 8061:8061 -it --volume "%cd%/inputImages/":/app/inputImages/ --rm matching_grpc
 
 ```
