@@ -1,0 +1,9 @@
+scipy
+grpcio==1.35.0
+grpcio-reflection==1.35.0
+opencv-contrib-python-headless==4.10.0.84
+protobuf==3.14.0
+numpy==1.24.4
+
+ultralytics==8.2.55 
+lapx>=0.5.2
