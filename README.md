@@ -57,7 +57,6 @@ For example, to access the matching points between image 1 and 4:
 
 ```
 matched_points = Dict['0-3']['matching_coord'][0][0]
-
 ```
 
 ## Deploy
@@ -77,5 +76,4 @@ docker build -t matching_grpc --build-arg SERVICE_NAME=generic_box -f docker/Doc
 To execute the docker container, make sure you have a file called "inputImages" so the volume can attactched to a folder and then exectue the following command: 
 ```
 docker run -p 8061:8061 -it --volume "%cd%/inputImages/":/app/inputImages/ --rm matching_grpc
-
 ```
