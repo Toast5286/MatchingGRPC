@@ -77,3 +77,5 @@ To execute the docker container, make sure you have a file called "inputImages" 
 ```
 docker run -p 8061:8061 -it --volume "%cd%/inputImages/":/app/inputImages/ --rm matching_grpc
 ```
+
+You can now add files to the "inputImages" directory and run the "test_generic_box.ipynb". 
