@@ -77,5 +77,3 @@ To execute the docker container, make sure you have a file called "inputImages" 
 ```
 docker run -p 8061:8061 -it --volume "%cd%/inputImages/":/app/inputImages/ --rm matching_grpc
 ```
-
-Afterwards, you can run "test_generic_box.ipynb". The output Yolo data will be stored in a "imback.mat".
