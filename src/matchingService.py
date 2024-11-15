@@ -232,10 +232,11 @@ class matching:
 
         for index in self.matches:
             pt1, desc1, pt2, desc2 = self.__GetMatchingKPAndDesc__(index,self.mask) 
-            #, 'Descriptor1':desc1, 'Descriptor2':desc2
-            print(type(self.ImageNames[index[0]]+"-"+self.ImageNames[index[1]]))
-            Dict[str(self.ImageNames[index[0]])+"-"+str(self.ImageNames[index[1]])] = np.hstack((pt1,pt2))
-
+            #, 'Descriptor1':desc1, 'Descriptor2':desc2 
+            filename1, _ = os.path.splitext(self.ImageNames[index[0]])
+            filename2, _ = os.path.splitext(self.ImageNames[index[1]])
+            Dict[str(filename1)+"_"+str(filename2)] = np.hstack((pt1,pt2))
+        print(Dict)
         return Dict
     
 def saveBinaryMat(dict):
