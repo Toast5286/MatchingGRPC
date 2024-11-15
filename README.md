@@ -45,9 +45,7 @@ Doesn't run any feature detection or matching. Returns whatever the first .mat f
 
 All outputs are an array of bytes that represent a compressed .mat file containing the corresponding keypoints between images and their descriptors.
 
-Since .mat file does not accept tensors, the Keys for the image pairs are a string with the following structure: "index1-index2". 
-
-The pairs of keypoint coordinates are stored with the dictionary key "matching_coord" and their descriptors in "Descriptor1" and "Descriptor2".
+Since .mat file does not accept tensors, the Keys for the image pairs are a string with the following structure: "[name of image 1]-[name of image 2]". 
 
 There are some wrappers due to the .mat file way to handle numpy arrays.
 
@@ -56,7 +54,7 @@ The pairs of keypoint coordinates are stored in a numpy array with 4 columns (x1
 For example, to access the matching points between image 1 and 4: 
 
 ```
-matched_points = Dict['0-3']['matching_coord'][0][0]
+matched_points = Dict['img_00000-img_00003'][0][0]
 ```
 
 ## Deploy
@@ -78,4 +76,4 @@ To execute the docker container, make sure you have a file called "inputImages" 
 docker run -p 8061:8061 -it --volume "%cd%/inputImages/":/app/inputImages/ --rm matching_grpc
 ```
 
-You can now add files to the "inputImages" directory and run the "test_generic_box.ipynb". 
+You can now add files to the "inputImages" directory and run the "test_generic_box.ipynb". The output file will be stored as FeatureData.mat in you're working directory.
