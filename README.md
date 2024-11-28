@@ -1,7 +1,7 @@
 
 # MatchingGRPC
+A grpc-pipeline element designed to run feature detection and matching. This element was designed to be part of a pipeline, therefore does not have any UI. Can be tested using the "test_generic_box.ipynb" file.
 
-Feature detection and matching as a GRPC "box".
 ## Methods
 
 | Method   | Input       | Output                           |
