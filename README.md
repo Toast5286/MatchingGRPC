@@ -59,21 +59,25 @@ matched_points = Dict['img_00000-img_00003'][0][0]
 
 ## Deploy
 
-To create the necessary generic_box_pb2.py and generic_box_pb2_grpc.py files use the following command:
-
-```
-  python -m grpc_tools.protoc --proto_path=./protos --python_out=. --grpc_python_out=. generic_box.proto
-```
-
 To build the docker image use:
 
 ```
 docker build -t matching_grpc --build-arg SERVICE_NAME=generic_box -f docker/Dockerfile .
 ```
 
+After this, just run the pipeline (Instructions are on the pipeline's repository).
+
+In case you want to test this pipeline element, follow the next instructions.
+
 To execute the docker container, make sure you have a file called "inputImages" so the volume can attactched to a folder and then exectue the following command: 
 ```
 docker run -p 8061:8061 -it --volume "%cd%/inputImages/":/app/inputImages/ --rm matching_grpc
 ```
 
-You can now add files to the "inputImages" directory and run the "test_generic_box.ipynb". The output file will be stored as FeatureData.mat in you're working directory.
+To test this pipeline element, it needs the grpc message types. All the grpc functions are stored in the "generic_box_pb2.py" and "generic_box_pb2_grpc.py". To get these files we run:
+
+```
+  python -m grpc_tools.protoc --proto_path=./protos --python_out=. --grpc_python_out=. generic_box.proto
+```
+
+You can now add .jpg images to the "inputImages" directory and run the "test_generic_box.ipynb". The output file will be stored as FeatureData.mat in you're working directory.
